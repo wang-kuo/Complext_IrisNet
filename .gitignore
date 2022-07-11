@@ -1,0 +1,3 @@
+snapshot
+*.ipynb
+__pycache__
