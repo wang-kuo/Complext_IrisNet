@@ -10,4 +10,5 @@ scipy
 scikit
 pytorch==1.11.0
 torchvision==0.13.0
+cplxmodule
 ```
