@@ -1,4 +1,4 @@
-This is an unofficial pytorch implementation of ["Complex-valued Iris Recognition Network".](https://arxiv.org/abs/2011.11198).
+This is an unofficial pytorch implementation of ["Complex-valued Iris Recognition Network"](https://arxiv.org/abs/2011.11198).
 
 ## Requirements
 Please install the following dependency in this project.

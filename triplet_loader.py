@@ -55,3 +55,41 @@ class TripletImageLoader(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.triplets)
+
+
+def default_image_loader(path):
+    return Image.open(path).convert('L')
+
+
+class TestImageLoader(torch.utils.data.Dataset):
+    def __init__(self, base_path, mask_path, transform=None, loader=default_image_loader):
+        self.base_path = base_path
+        self.mask_path = mask_path
+        self.subjects = sorted(os.listdir(base_path))
+        self.samples = list()
+        self.masks = list()
+        self.labels =list()
+  
+        for sbj in self.subjects:
+            samples = sorted(os.listdir(os.path.join(base_path, sbj)))
+            for sample in samples:
+                self.samples.append(os.path.join(base_path, sbj, sample))
+                self.masks.append(os.path.join(mask_path, sbj, sample))
+                self.labels.append(sbj)           
+        if transform is None:
+            self.transform = transforms.Compose([transforms.ToTensor()])
+        else:
+            self.transform = transform
+        self.transform2 = transforms.Compose(
+            [transforms.ToTensor(), transforms.Resize((8, 32))])
+        self.loader = loader
+
+    def __getitem__(self, index):
+        img = self.transform(self.loader(self.samples[index]))   
+        mask = self.transform2(self.loader(self.masks[index])).bool()
+        label = self.labels[index]
+
+        return img, mask, label
+
+    def __len__(self):
+        return len(self.samples)
