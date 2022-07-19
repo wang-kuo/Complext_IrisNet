@@ -3,10 +3,9 @@ import os
 from torchvision import transforms
 from torch.optim import lr_scheduler
 import torch.optim as optim
-from triplet_loader import TripletImageLoader
-from model import TripletNet
-from model import ComplexIrisNet, FeatNet
-from loss import ExtendedTripletLoss, TripletLoss
+from data.triplet_loader import TripletImageLoader
+from model import TripletNet, ComplexIrisNet, FeatNet
+from model import ExtendedTripletLoss, TripletLoss
 import numpy as np
 import argparse
 parser = argparse.ArgumentParser(description="Set the configuration for the training.")

@@ -8,7 +8,7 @@ from torch.jit.annotations import List
 import torch.utils.checkpoint as cp
 from collections import OrderedDict
 import numpy as np
-from GaborLayer import GaborConv2d
+from .GaborLayer import GaborConv2d
 import cplxmodule.cplx
 from cplxmodule.nn.modules.batchnorm import CplxBatchNorm2d
 from cplxmodule.nn.modules.activation import CplxModReLU
