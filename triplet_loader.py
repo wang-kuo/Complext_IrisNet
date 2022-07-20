@@ -15,7 +15,7 @@ class TripletImageLoader(torch.utils.data.Dataset):
         self.subjects = sorted(os.listdir(base_path))
         self.samples = dict()
         for sbj in self.subjects:
-            self.samples[sbj] = os.listdir(os.path.join(base_path, sbj))
+            self.samples[sbj+'/L'] = os.listdir(os.path.join(base_path, sbj+'/L'))
         self.triplets = []
         for sbj in self.subjects:
             for i, anchor in enumerate(self.samples[sbj]):
