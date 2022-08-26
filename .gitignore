@@ -1,6 +1,10 @@
+# Add in this project
 snapshot
 *.ipynb
 __pycache__
+result
+*.mat
+Train_Test_List/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

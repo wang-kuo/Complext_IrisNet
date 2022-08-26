@@ -14,3 +14,12 @@ cplxmodule
 ```
 
 ## 2. Train Test
+The experiments are performed on one machine with three GTX-1080Ti.
+For training, please run the following code by specifying the path.
+```python
+ python train.py --base_path ../Data --mask_path ../Data -F Train_Test_List/train_nd_1s_LR.txt --batch_size 32 --dataset nd_1s
+```
+For testing, please run the following code by specifying the path.
+```python
+env CUDA_VISIBLE_DEVICES=0 python test.py --base_path <img_path> --mask_path <mask_path> --checkpoint <checkpoint_path>
+```

@@ -8,7 +8,7 @@ from torch.jit.annotations import List
 import torch.utils.checkpoint as cp
 from collections import OrderedDict
 import numpy as np
-from GaborLayer import GaborConv2d
+from .GaborLayer import GaborConv2d
 import cplxmodule.cplx
 from cplxmodule.nn.modules.batchnorm import CplxBatchNorm2d
 from cplxmodule.nn.modules.activation import CplxModReLU
@@ -143,11 +143,15 @@ class ComplexIrisNet(nn.Sequential):
     def __init__(self):
 
         super(ComplexIrisNet, self).__init__()
-        self.gabor = GaborNN()
+        self.gabor = GaborNN(out_channels=20)
         self.dense1 = _DenseBlock(num_layers= 4, num_input_features=20, bn_size=4, growth_rate=16, drop_rate=0)
         self.tran1 = _Transition(num_input_features=84, num_output_features=16)
         self.dense2 = _DenseBlock(num_layers= 4, num_input_features=16, bn_size=4, growth_rate=16, drop_rate=0)
         self.tran2 = _Transition(num_input_features=80, num_output_features=10)
+        # self.dense1 = _DenseBlock(num_layers= 6, num_input_features=20, bn_size=4, growth_rate=16, drop_rate=0)
+        # self.tran1 = _Transition(num_input_features=84, num_output_features=16)
+        # self.dense2 = _DenseBlock(num_layers= 6, num_input_features=32, bn_size=4, growth_rate=16, drop_rate=0)
+        # self.tran2 = _Transition(num_input_features=80, num_output_features=10)
 
     def forward(self, x):
         out = self.gabor(x)
